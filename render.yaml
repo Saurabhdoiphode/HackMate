@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: hackmate-server
+    env: node
+    rootDir: server
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    autoDeploy: true
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: DISABLE_LOCAL_AI
+        value: "true"
+      - key: AI_MODE
+        value: "fallback"
+  - type: static
+    name: hackmate-client
+    rootDir: client
+    buildCommand: "npm install && npm run build"
+    publishDir: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: "https://hackmate-server.onrender.com"
+
+# Optional: cron jobs or background workers could be added here later
