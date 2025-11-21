@@ -2,7 +2,7 @@ services:
   - type: web
     name: hackmate-server
     env: node
-    rootDir: server
+    rootDirectory: server
     plan: free
     buildCommand: "npm install"
     startCommand: "npm start"
@@ -18,9 +18,9 @@ services:
         value: "fallback"
   - type: static
     name: hackmate-client
-    rootDir: client
+    rootDirectory: client
     buildCommand: "npm install && npm run build"
-    publishDir: dist
+    publishDirectory: dist
     envVars:
       - key: VITE_API_BASE_URL
         value: "https://hackmate-server.onrender.com"
